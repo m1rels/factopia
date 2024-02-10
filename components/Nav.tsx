@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { type } from "os";
 
 const Nav = (props: {}) => {
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
 
   const [providers, setProvidersData] = useState(Object);
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -35,16 +35,16 @@ const Nav = (props: {}) => {
         <p className="logo_text">Factopia</p>
       </Link>
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
               Create Post
             </Link>
-            <button type="button" onClick={() => signOut} className="outline_btn">
+            <button type="button" onClick={() => signOut()} className="outline_btn">
               Sign Out
             </button>
             <Link href="/profile">
-                <Image src="/assets/images/logo.svg"
+                <Image src={session?.user.image}
                 width={37}
                 height={37}
                 className="rounded-full"
@@ -54,7 +54,7 @@ const Nav = (props: {}) => {
         ) : (
           <>
           {providers &&
-            Object.values(providers).map((provider) => (
+            Object.values(providers).map((provider: any) => (
                 <button
                 type="button"
                 key={provider.name}
@@ -68,9 +68,9 @@ const Nav = (props: {}) => {
       </div>
 
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
             <div className="flex">
-                <Image src="/assets/images/logo.svg"
+                <Image src={session?.user.image}
                 width={37}
                 height={37}
                 className="rounded-full"
@@ -93,7 +93,7 @@ const Nav = (props: {}) => {
         ): (
             <>
           {providers &&
-            Object.values(providers).map((provider) => (
+            Object.values(providers).map((provider: any) => (
                 <button
                 type="button"
                 key={provider.name}
