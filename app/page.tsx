@@ -9,6 +9,7 @@ export default function Home() {
       <p className="desc text-center">
       Factopia is a platform that enables users to effortlessly share and explore fascinating and entertaining facts.
       </p>
+
     </section>
   );
 }
