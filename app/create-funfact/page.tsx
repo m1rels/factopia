@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import Form from "@components/Form";
 
-function CreateFunfact(props) {
+function CreateFunfact() {
     const router = useRouter();
     const {data: session} = useSession();
     const [submitting, setSubmitting] = useState(false);

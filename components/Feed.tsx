@@ -11,9 +11,7 @@ const PromptCardList = (props: { data: never[], handleTagClick: Function }) => {
                 <PromptCard 
                     key={post._id}
                     post={post}
-                    handleTagClick={props.handleTagClick} 
-                    handleEdit={undefined} 
-                    handleDelete={undefined}                />
+                    handleTagClick={props.handleTagClick}            />
             ))}
         </div>
     )

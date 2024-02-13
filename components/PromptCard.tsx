@@ -1,18 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
-function PromptCard(props: { post; handleTagClick; handleEdit; handleDelete }) {
-    const [copied, setCopied] = useState("");
+function PromptCard(props: {
+  post: any;
+  handleTagClick: Function;
+  handleEdit: MouseEventHandler<HTMLParagraphElement>;
+  handleDelete: MouseEventHandler<HTMLParagraphElement>;
+}) {
+  const [copied, setCopied] = useState("");
 
-    const handleCopy = () => {
-        setCopied(props.post.prompt);
-        navigator.clipboard.writeText(props.post.prompt);
-        setTimeout(() => setCopied(""), 3000);
-    }
+  const { data: session } = useSession();
+  const pathName = usePathname();
+  const router = useRouter();
+
+  const handleCopy = () => {
+    setCopied(props.post.prompt);
+    navigator.clipboard.writeText(props.post.prompt);
+    setTimeout(() => setCopied(""), 3000);
+  };
 
   return (
     <div className="prompt_card">
@@ -34,7 +43,12 @@ function PromptCard(props: { post; handleTagClick; handleEdit; handleDelete }) {
             </p>
           </div>
         </div>
-        <div className="copy_btn" onClick={() => {handleCopy();}}>
+        <div
+          className="copy_btn"
+          onClick={() => {
+            handleCopy();
+          }}
+        >
           <Image
             src={
               copied === props.post.prompt
@@ -47,8 +61,34 @@ function PromptCard(props: { post; handleTagClick; handleEdit; handleDelete }) {
           />
         </div>
       </div>
-      <p className="my-4 font-satoshi text-sm text-gray-700">{props.post.prompt}</p>
-      <p className="font-inter text-sm blue_gradient cursor-pointer" onClick={() => props.handleTagClick && props.handleTagClick(props.post.tag)}>{props.post.tag}</p>
+      <p className="my-4 font-satoshi text-sm text-gray-700">
+        {props.post.prompt}
+      </p>
+      <p
+        className="font-inter text-sm blue_gradient cursor-pointer"
+        onClick={() =>
+          props.handleTagClick && props.handleTagClick(props.post.tag)
+        }
+      >
+        {props.post.tag}
+      </p>
+
+      {session?.user.id === props.post.creator._id && pathName === "/profile" && (
+        <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
+          <p
+            className="font-inter text-sm green_gradient cursor-pointer"
+            onClick={props.handleEdit}
+          >
+            Edit
+          </p>
+          <p
+            className="font-inter text-sm orange_gradient cursor-pointer"
+            onClick={props.handleDelete}
+          >
+            Delete
+          </p>
+        </div>
+      )}
     </div>
   );
 }
