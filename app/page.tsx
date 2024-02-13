@@ -1,3 +1,5 @@
+import Feed from "@components/Feed";
+
 export default function Home() {
   return (
     <section className="w-full flex-center flex-col">
@@ -9,7 +11,7 @@ export default function Home() {
       <p className="desc text-center">
       Factopia is a platform that enables users to effortlessly share and explore fascinating and entertaining facts.
       </p>
-
+      <Feed />
     </section>
   );
 }
