@@ -1,6 +1,6 @@
 import PromptCard from "./PromptCard";
 
-const Profile = (props: { name: string, desc: string, data: [], handleEdit: Function, handleDelete: Function }) => {
+const Profile = (props: { name: string | null, desc: string, data: [], handleEdit: Function, handleDelete: Function }) => {
   return (
     <section className='w-full'>
       <h1 className='head_text text-left'>

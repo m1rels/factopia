@@ -17,6 +17,13 @@ function PromptCard(props: {
   const pathName = usePathname();
   const router = useRouter();
 
+  const handleProfileClick = () => {
+
+    if (props.post.creator._id === session?.user.id) return router.push("/profile");
+
+    router.push(`/profile/${props.post.creator._id}?name=${props.post.creator.userName}`);
+  };
+
   const handleCopy = () => {
     setCopied(props.post.prompt);
     navigator.clipboard.writeText(props.post.prompt);
@@ -26,7 +33,7 @@ function PromptCard(props: {
   return (
     <div className="prompt_card">
       <div className="flex justify-between items-start gap-5">
-        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
+        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer" onClick={handleProfileClick}>
           <Image
             src={props.post.creator.image}
             alt="user_image"
