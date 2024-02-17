@@ -21,7 +21,7 @@ function PromptCard(props: {
 
     if (props.post.creator._id === session?.user?.id) return router.push("/profile");
 
-    router.push(`/profile/${props.post.creator._id}?name=${props.post.creator.userName}`);
+    router.push(`/profile/${props.post.creator._id}?name=${props.post.creator.username}`);
   };
 
   const handleCopy = () => {
