@@ -12,6 +12,7 @@ const Nav = (props: {}) => {
 
   const [providers, setProvidersData] = useState(Object);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const setProviders = async () => {
@@ -22,6 +23,11 @@ const Nav = (props: {}) => {
 
     setProviders();
   }, [])
+
+  useEffect(() => {
+    // Check if the user is logged in and update the UI accordingly
+    setIsLoggedIn(!!session?.user);
+  }, [session]);
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -36,7 +42,7 @@ const Nav = (props: {}) => {
         <p className="logo_text">Factopia</p>
       </Link>
       <div className="sm:flex hidden">
-        {session?.user ? (
+        {isLoggedIn ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-funfact" className="black_btn">
               Create Post
@@ -69,7 +75,7 @@ const Nav = (props: {}) => {
       </div>
 
       <div className="sm:hidden flex relative">
-        {session?.user ? (
+        {isLoggedIn ? (
             <div className="flex">
                 <Image src={session?.user.image}
                 width={37}
