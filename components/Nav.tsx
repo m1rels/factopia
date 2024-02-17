@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { type } from "os";
 
 const Nav = (props: {}) => {
   const { data: session } = useSession();
@@ -60,7 +59,7 @@ const Nav = (props: {}) => {
           </div>
         ) : (
           <>
-          {providers &&
+          {providers && !session &&
             Object.values(providers).map((provider: any) => (
                 <button
                 type="button"
@@ -99,7 +98,7 @@ const Nav = (props: {}) => {
             </div>
         ): (
             <>
-          {providers &&
+          {providers && !session &&
             Object.values(providers).map((provider: any) => (
                 <button
                 type="button"
