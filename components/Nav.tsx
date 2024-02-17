@@ -59,7 +59,7 @@ const Nav = (props: {}) => {
           </div>
         ) : (
           <>
-          {providers && !session &&
+          {providers &&
             Object.values(providers).map((provider: any) => (
                 <button
                 type="button"
@@ -98,7 +98,7 @@ const Nav = (props: {}) => {
             </div>
         ): (
             <>
-          {providers && !session &&
+          {providers &&
             Object.values(providers).map((provider: any) => (
                 <button
                 type="button"
