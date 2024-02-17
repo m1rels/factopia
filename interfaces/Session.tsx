@@ -6,7 +6,7 @@ declare module "next-auth" {
     user: {
       name?: string | null | undefined;
       email?: string | null | undefined;
-      image?: string | StaticImport;
+      image?: string | StaticImport | any;
     } & {
       id: string;
     };
