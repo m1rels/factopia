@@ -12,6 +12,8 @@ const PromptCardList = (props: { data: never[]; handleTagClick: Function }) => {
           key={post._id}
           post={post}
           handleTagClick={props.handleTagClick}
+          handleEdit={() => {}}
+          handleDelete={() => {}}
         />
       ))}
     </div>
@@ -28,7 +30,7 @@ const Feed = () => {
       item.creator.userName.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: any) => {
     setSearchText(e.target.value);
   };
 

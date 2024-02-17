@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -15,7 +15,7 @@ function CreateFunfact() {
         tag: ""
     })
 
-    const createFunfact = async (e: Event) => {
+    const createFunfact = async (e: any) => {
         e.preventDefault();
         setSubmitting(true);
 
