@@ -19,7 +19,7 @@ function PromptCard(props: {
 
   const handleProfileClick = () => {
 
-    if (props.post.creator._id === session?.user.id) return router.push("/profile");
+    if (props.post.creator._id === session?.user?.id) return router.push("/profile");
 
     router.push(`/profile/${props.post.creator._id}?name=${props.post.creator.userName}`);
   };
@@ -80,7 +80,7 @@ function PromptCard(props: {
         {props.post.tag}
       </p>
 
-      {session?.user.id === props.post.creator._id && pathName === "/profile" && (
+      {session?.user?.id === props.post.creator._id && pathName === "/profile" && (
         <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
           <p
             className="font-inter text-sm green_gradient cursor-pointer"

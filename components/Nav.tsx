@@ -8,6 +8,7 @@ import { type } from "os";
 
 const Nav = (props: {}) => {
   const { data: session } = useSession();
+  console.log(session)
 
   const [providers, setProvidersData] = useState(Object);
   const [toggleDropdown, setToggleDropdown] = useState(false);
