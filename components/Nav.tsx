@@ -41,7 +41,7 @@ const Nav = (props: {}) => {
         <p className="logo_text">Factopia</p>
       </Link>
       <div className="sm:flex hidden">
-        {status === "authenticated" ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-funfact" className="black_btn">
               Create Post
@@ -74,7 +74,7 @@ const Nav = (props: {}) => {
       </div>
 
       <div className="sm:hidden flex relative">
-        {status === "authenticated" ? (
+        {session?.user ? (
             <div className="flex">
                 <Image src={session?.user?.image}
                 width={37}
