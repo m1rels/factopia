@@ -6,7 +6,7 @@ import Image from "next/image";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = (props: {}) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   console.log(session)
 
   const [providers, setProvidersData] = useState(Object);
@@ -41,7 +41,7 @@ const Nav = (props: {}) => {
         <p className="logo_text">Factopia</p>
       </Link>
       <div className="sm:flex hidden">
-        {isLoggedIn ? (
+        {status === "authenticated" ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-funfact" className="black_btn">
               Create Post
@@ -50,7 +50,7 @@ const Nav = (props: {}) => {
               Sign Out
             </button>
             <Link href="/profile">
-                <Image src={session?.user.image}
+                <Image src={session?.user?.image}
                 width={37}
                 height={37}
                 className="rounded-full"
@@ -74,9 +74,9 @@ const Nav = (props: {}) => {
       </div>
 
       <div className="sm:hidden flex relative">
-        {isLoggedIn ? (
+        {status === "authenticated" ? (
             <div className="flex">
-                <Image src={session?.user.image}
+                <Image src={session?.user?.image}
                 width={37}
                 height={37}
                 className="rounded-full"
