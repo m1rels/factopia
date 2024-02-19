@@ -6,12 +6,11 @@ import Image from "next/image";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = (props: {}) => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   console.log(session)
 
   const [providers, setProvidersData] = useState(Object);
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const setProviders = async () => {
@@ -22,11 +21,6 @@ const Nav = (props: {}) => {
 
     setProviders();
   }, [])
-
-  useEffect(() => {
-    // Check if the user is logged in and update the UI accordingly
-    setIsLoggedIn(!!session?.user);
-  }, [session]);
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
