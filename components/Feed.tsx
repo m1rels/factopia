@@ -89,7 +89,6 @@ const Feed = () => {
       ) : (
         <PromptCardList data={posts} handleTagClick={handleTagClick} />
       )}
-        <p className="text-xs text-center italic font-mono text-gray-900">nav-icon made by <a href="https://www.flaticon.com/authors/rukanicon" title="rukanicon"> rukanicon </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
     </section>
   );
 };
