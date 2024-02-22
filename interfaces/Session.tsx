@@ -1,4 +1,3 @@
-import { DefaultUser } from "next-auth";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 declare module "next-auth" {
@@ -10,5 +9,8 @@ declare module "next-auth" {
     } & {
       id: string;
     };
+  }
+  interface Profile {
+    picture: string | undefined;
   }
 }

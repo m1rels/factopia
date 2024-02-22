@@ -1,7 +1,14 @@
 import { connectToDB } from "@utils/database";
 import Prompt from "@models/prompt";
 
-export const POST = async (req, res) => {
+export const POST = async (
+  req: {
+    json: () =>
+      | PromiseLike<{ userId: any; prompt: any; tag: any }>
+      | { userId: any; prompt: any; tag: any };
+  },
+  res: any
+) => {
   const { userId, prompt, tag } = await req.json();
 
   try {
@@ -9,7 +16,7 @@ export const POST = async (req, res) => {
     const newPrompt = new Prompt({
       creator: userId,
       prompt,
-      tag
+      tag,
     });
 
     await newPrompt.save();

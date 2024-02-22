@@ -8,8 +8,8 @@ import { error } from "console";
 const handler = NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
   callbacks: {
@@ -26,14 +26,14 @@ const handler = NextAuth({
             await connectToDB();
     
             const UserExists = await User.findOne({
-              email: profile.email,
+              email: profile?.email,
             });
       
             if(!UserExists) {
               await User.create({
-                  email: profile.email,
-                  username: profile.name.replace(" ", "").toLowerCase(),
-                  image: profile.picture
+                  email: profile?.email,
+                  username: profile?.name?.replace(" ", "").toLowerCase(),
+                  image: profile?.picture
               })
             }
       
