@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+const mongodb = "mongodb+srv://mirelkorajac:060506mK@cluster0.ld3eure.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
 let isConnected = false;
 
 export const connectToDB = async () => {
@@ -11,9 +13,7 @@ export const connectToDB = async () => {
     }
 
     try {
-        await mongoose.connect(process.env.MONGODB_URI!, {
-            dbName: "share_funfact",
-        })
+        await mongoose.connect(mongodb)
 
         isConnected = true;
 
