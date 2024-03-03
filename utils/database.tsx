@@ -13,7 +13,9 @@ export const connectToDB = async () => {
     }
 
     try {
-        await mongoose.connect(mongodb)
+        await mongoose.connect(mongodb, {
+            dbName: "share_funfact"
+        })
 
         isConnected = true;
 
