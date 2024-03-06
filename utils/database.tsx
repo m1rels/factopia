@@ -7,19 +7,19 @@ export const connectToDB = async () => {
 
     if (isConnected) {
         console.log("MongoDB is already connected");
-        return;
+        return true;
     }
 
     try {
         await mongoose.connect(process.env.MONGODB_URI!, {
             dbName: "share_funfact"
-        })
+        });
 
         isConnected = true;
 
         console.log("MongoDB connected")
+        return true;
     } catch (error) {
         console.log(error);
-        throw new Error("Failed to connect to MongoDB");
     }
 }
