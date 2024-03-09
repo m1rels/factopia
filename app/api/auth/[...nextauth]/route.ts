@@ -1,7 +1,7 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
-import User from "@models/user";
+import * as UserModal from "@models/user";
 import { connectToDB } from "@utils/database";
 import { error } from "console";
 
@@ -15,7 +15,7 @@ const handler = NextAuth({
   callbacks: {
     async session({ session }) {
         // store the user id from MongoDB to session
-        const sessionUser = await User.findOne({ email: session.user.email });
+        const sessionUser = await UserModal.User.findOne({ email: session.user.email });
         session.user.id = sessionUser._id.toString();
   
         return session;
@@ -25,12 +25,12 @@ const handler = NextAuth({
         if (isAllowedToSignIn) {
             await connectToDB();
     
-            const UserExists = await User.findOne({
+            const UserExists = await UserModal.User.findOne({
               email: profile?.email,
             });
       
             if(!UserExists) {
-              await User.create({
+              await UserModal.User.create({
                   email: profile?.email,
                   username: profile?.name?.replace(" ", "").toLowerCase(),
                   image: profile?.picture

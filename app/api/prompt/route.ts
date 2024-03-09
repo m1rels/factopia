@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { connectToDB } from "@utils/database";
 import Prompt from "@models/prompt";
-import { UserSchema, User } from "@models/user";
+import * as UserModel from "@models/user";
 
 export const dynamic = "force-dynamic";
 
@@ -9,7 +9,7 @@ export const GET = async (request: any) => {
   try {
     await connectToDB();
 
-    mongoose.model('User', UserSchema);
+    mongoose.model('User', UserModel.UserSchema);
 
     const prompts = await Prompt.find({}).populate("creator");
 
