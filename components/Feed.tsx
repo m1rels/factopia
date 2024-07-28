@@ -56,6 +56,10 @@ const Feed = () => {
     setSearchedResults(searchResult);
   }; 
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+  };
+
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch("/api/prompt");
@@ -71,7 +75,7 @@ const Feed = () => {
 
   return (
     <section className="feed">
-      <form className="relative w-full flex-center">
+      <form className="relative w-full flex-center" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Search for a tag or a username"
