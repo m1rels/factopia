@@ -72,7 +72,7 @@ const Nav = (props: {}) => {
             <button
               type="button"
               onClick={() => signOut()}
-              className="outline_btn"
+              className="black_btn"
             >
               Sign Out
             </button>
