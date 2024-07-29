@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useRef } from "react";
 import PromptCard from "@components/PromptCard";
 
 const PromptCardList = (props: { data: never[]; handleTagClick: Function }) => {
@@ -25,6 +24,7 @@ const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(Object);
   const [searchedResults, setSearchedResults] = useState([]);
   const [posts, setPosts] = useState([]);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const filterPrompts = (searchtext: string) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
@@ -54,10 +54,18 @@ const Feed = () => {
 
     const searchResult = filterPrompts(tagName);
     setSearchedResults(searchResult);
-  }; 
+  };
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default form submission
+
+    const searchResult = filterPrompts(searchText);
+    setSearchedResults(searchResult);
+
+    // Remove focus from the input field
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
   };
 
   useEffect(() => {
@@ -72,7 +80,6 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
-
   return (
     <section className="feed">
       <form className="relative w-full flex-center" onSubmit={handleSubmit}>
@@ -83,6 +90,7 @@ const Feed = () => {
           onChange={handleSearchChange}
           required
           className="search_input peer"
+          ref={inputRef}
         />
       </form>
       {searchText ? (
