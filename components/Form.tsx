@@ -23,7 +23,7 @@ function Form(props: {
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
         <label>
-          <span className="font-satoshi font-semibold text-base text-gray-700">
+          <span className="font-satoshi font-semibold text-base text-gray-700 dark:text-gray-400">
             Your Fun Fact
           </span>
 
@@ -38,7 +38,7 @@ function Form(props: {
 
         </label>
         <label>
-          <span className="font-satoshi font-semibold text-base text-gray-700">
+          <span className="font-satoshi font-semibold text-base text-gray-700 dark:text-gray-400">
             Tag {" "}
             <span>(#curiousfacts, #didyouknow, #mindblown)</span>
           </span>

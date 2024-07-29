@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Provider>
-        <div className="main">
+        <div className="main dark:bg-slate-950">
           <div className="gradient" />
         </div>
         <main className="app">

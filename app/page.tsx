@@ -14,9 +14,9 @@ export default function Home() {
       </p>
       <Feed />
       <div>
-        <Link href="/privacy-policy" className="text-xs text-gray-700" >Privacy Policy</Link>
-        <span className="text-xs text-gray-700"> | </span>
-        <Link href="/terms-of-use" className="text-xs text-gray-700">Terms of Use</Link>
+        <Link href="/privacy-policy" className="text-xs text-gray-700 dark:text-gray-400" >Privacy Policy</Link>
+        <span className="text-xs text-gray-700 dark:text-gray-400"> | </span>
+        <Link href="/terms-of-use" className="text-xs text-gray-700 dark:text-gray-400">Terms of Use</Link>
       </div>
     </section>
   );
