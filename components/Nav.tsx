@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { MdLightMode, MdDarkMode } from "react-icons/md";
+import ThemeButton from "./ThemeButton";
 
 const Nav = (props: {}) => {
   const { data: session } = useSession();
@@ -12,17 +12,6 @@ const Nav = (props: {}) => {
 
   const [providers, setProvidersData] = useState(Object);
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const storedDarkMode = localStorage.getItem('darkMode');
-      if (storedDarkMode) {
-        return storedDarkMode === "true";
-      } else {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches;
-      }
-    }
-    return false;
-  });
 
   useEffect(() => {
     const setProviders = async () => {
@@ -33,18 +22,6 @@ const Nav = (props: {}) => {
     setProviders();
   }, []);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem('darkMode', darkMode.toString());
-  }, [darkMode]);
-
-  const toggleMode = () => {
-    setDarkMode(prevMode => !prevMode);
-  };
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -59,9 +36,7 @@ const Nav = (props: {}) => {
           />
           <p className="logo_text dark:text-gray-300">Factopia</p>
         </Link>
-        <button type="button" onClick={toggleMode} className="icon_btn">
-          {darkMode ? <MdLightMode /> : <MdDarkMode />}
-        </button>
+        <ThemeButton />
       </div>
       <div className="sm:flex hidden">
         {session?.user ? (

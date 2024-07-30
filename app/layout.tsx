@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@styles/globals.css";
+import { ThemeProvider } from 'next-themes';
 
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
@@ -18,9 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Provider>
+        <ThemeProvider attribute="class">
         <div className="main dark:bg-slate-950">
           <div className="gradient" />
         </div>
@@ -28,6 +30,7 @@ export default function RootLayout({
           <Nav />
           {children}
         </main>
+        </ ThemeProvider>
         </Provider>
       </body>
     </html>
